@@ -291,14 +291,17 @@ C:\Users\liwufan\Desktop\WaveRider\build\src\Release\WaveRider.exe
 | DSP 系统 | IDSPEffect + DSPChain + 3个内置效果 + EqualizerWidget + DSPPanel |
 | | 10段参量EQ (32-16KHz ±15dB) + 8预设 + 压缩器 + 混响 |
 | PlaylistPanel | 右侧320px滑入/滑出动画 + 背景遮罩 + 搜索过滤 + PlaylistDelegate自定义48px行 |
+| SkinSelectorDialog | Phigros浮动面板(360×280)，解析皮肤@vars 6色预览，2列网格，点击即用 |
+| BackgroundDialog | 400×320设置面板，144×96预览，5种模式按钮，Blur/Dim实时滑块 |
+| DSPPluginLoader | DLL扫描 + JSON manifest解析 + 工厂函数验证 + QLibrary实例化 |
+| 动态缩放 | Baseline 800×450, scale [0.8, 2.0], TrackInfo+ControlBar字号/布局全缩放 |
 
 ### 🔄 待做
 | 模块 | 说明 |
 |------|------|
-| SkinSelector / BackgroundDialog | 对话框待实现 |
 | 内置主题 | 后期协商 |
-| 动态缩放 | 扩展点已预留，resizeEvent hook 待实现 |
-| DSP 插件加载 | DSPPluginLoader 扫描/实例化逻辑待实现 |
+| EqualizerWidget 预设持久化 | QQ 音乐风格个性化 EQ 预设保存 |
+| 在线歌词源扩展 | 多数据源fallback，歌词时间轴微调 |
 
 ## 待下载（可选功能）
 将以下文件放入 `vendor/bass/` 解锁 FLAC/AAC：
