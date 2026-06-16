@@ -120,8 +120,6 @@ const char* EqualizerEffect::presetName(Preset preset)
 void EqualizerEffect::createFxHandles(HSTREAM stream)
 {
     for (int i = 0; i < kNumBands; ++i) {
-        // Priority: higher bands get slightly higher priority.
-        // This is mostly cosmetic in BASS but keeps order somewhat.
         m_fxHandles[i] = BASS_ChannelSetFX(stream, BASS_FX_DX8_PARAMEQ, i);
 
         if (m_fxHandles[i]) {

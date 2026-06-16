@@ -45,6 +45,13 @@ int main(int argc, char* argv[])
     if (!window.initialize()) {
         return 1;
     }
+
+    // If a file path is passed on the command line, auto-load it
+    if (argc > 1) {
+        QString filePath = QString::fromLocal8Bit(argv[1]);
+        window.loadAndPlay(filePath);
+    }
+
     window.show();
 
     return app.exec();

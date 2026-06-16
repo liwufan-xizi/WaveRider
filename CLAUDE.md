@@ -240,8 +240,9 @@ DSPPanel UI → EqualizerWidget::bandChanged → EqualizerEffect::setBandGain()
 ```
 
 ### 关键发现
-- BASS_DX8 效果（PARAMEQ/COMPRESSOR/REVERB）**内置在 bass.dll**，无需 bass_fx.dll
-- bass_fx.dll 只提供额外的 BFX 效果（非必需），DX8 效果开箱即用
+- **更正**: BASS_DX8 效果（PARAMEQ/COMPRESSOR/REVERB）**需要 bass_fx.dll**！它们不在 bass.dll 中。bass_fx.dll 已下载(v2.4)放入 vendor/bass/，CMake 自动复制到输出目录。
+- **FFT 缓冲区溢出修复**: SpectrumWidget 使用 `BASS_DATA_FFT_INDIVIDUAL` 时，立体声 MP3 会返回 1024 个 float（每声道 512），但栈缓冲区只有 512 → `STATUS_STACK_BUFFER_OVERRUN` 崩溃。修复：移除 INDIVIDUAL 标志，使用混合声道 FFT。
+- **信号桥接修复**: `AudioEngine::trackStarted` 未被连接到 `SignalBus::trackStarted`，导致 MainWindow::onTrackStarted 从不执行（DSP 链不绑定、UI 不更新、歌词不加载）。已在 MainWindow::setupConnections 中加桥接 lambda。
 
 ### EqualizerWidget (自定义绘制)
 - 10条垂直滑块，Phigros 风格：细线轨道(3px) + 圆形手柄(5px radius)
@@ -308,8 +309,9 @@ C:\Users\liwufan\Desktop\WaveRider\build\src\Release\WaveRider.exe
 - bassflac.dll + bassflac.lib (FLAC)
 - bass_aac.dll + bass_aac.lib (AAC)
 来源: http://www.un4seen.com/
-（DSP 均衡器/压缩/混响已通过 bass.dll 内置 DX8 效果实现，无需额外下载）
+（bass_fx.dll 已下载并集成，DSP 效果正常工作）
 
 ## BASS DLL 运行时
-bass.dll 通过 CMake POST_BUILD 自动复制到 exe 同目录。
+bass.dll + bass_fx.dll 通过 CMake POST_BUILD 自动复制到 exe 同目录。
+bass_fx.dll (v2.4, x64) 提供 DX8 效果 (PARAMEQ/COMPRESSOR/REVERB)。
 Qt DLL 从 `C:\ProgramData\anaconda3\Library\bin` 加载（需在 PATH 中）。

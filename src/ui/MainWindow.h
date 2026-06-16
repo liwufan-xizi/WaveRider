@@ -31,6 +31,7 @@ public:
     ~MainWindow() override;
 
     bool initialize();
+    void loadAndPlay(const QString& filePath);
 
 protected:
     void closeEvent(QCloseEvent* event) override;

@@ -60,7 +60,7 @@ void SpectrumWidget::fetchFftData()
     float fft[kFftBins];
     DWORD result = BASS_ChannelGetData(
         m_engine->streamHandle(), fft,
-        kFftFlags | BASS_DATA_FFT_INDIVIDUAL | BASS_DATA_FFT_REMOVEDC);
+        kFftFlags | BASS_DATA_FFT_REMOVEDC);
 
     if (result == static_cast<DWORD>(-1)) {
         std::fill_n(m_fftData, kNumBars, 0.0f);

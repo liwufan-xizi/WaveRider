@@ -313,6 +313,21 @@ void MainWindow::setupConnections()
         m_controlBar->setPlaying(state == PlaybackState::Playing);
     });
 
+    // ── Bridge AudioEngine::trackStarted → SignalBus ──
+    // AudioEngine emits only filePath; we extract title/artist from the model and
+    // forward a complete SignalBus::trackStarted so onTrackStarted runs.
+    connect(m_audioEngine, &AudioEngine::trackStarted, this, [this](const QString& filePath) {
+        m_currentFilePath = filePath;
+        int idx = m_playlistModel->findTrackByPath(filePath);
+        QString title, artist;
+        if (idx >= 0) {
+            auto meta = m_playlistModel->metadataAt(idx);
+            title  = meta.title;
+            artist = meta.artist;
+        }
+        emit SignalBus::instance()->trackStarted(filePath, title, artist);
+    });
+
     // ── SignalBus → UI ──────────────────────────────
     connect(bus, &SignalBus::trackStarted, this, &MainWindow::onTrackStarted);
     connect(bus, &SignalBus::trackFinished, this, &MainWindow::onTrackFinished);
@@ -425,7 +440,13 @@ void MainWindow::onTrackStarted(const QString& filePath, const QString&, const Q
         m_controlBar->setPlaying(true);
         statusBar()->showMessage("Now playing: " + meta.title + " — " + meta.artist);
 
-        // Lyrics: 3-tier loading
+        // DSP: re-apply effects to new stream
+        if (m_dspChain) {
+            m_dspChain->setStream(m_audioEngine->streamHandle());
+            m_dspChain->reapplyAll();
+        }
+
+        // Lyrics: 3-tier loading (deferred after DSP to isolate crash)
         QString lrcPath = LyricParser::findLrcFile(filePath);
         if (!lrcPath.isEmpty() && m_lyricModel->loadFromFile(lrcPath)) {
             m_lyricPanel->setStatus(LyricStatus::Loaded);
@@ -435,12 +456,6 @@ void MainWindow::onTrackStarted(const QString& filePath, const QString&, const Q
         } else {
             m_lyricPanel->setStatus(LyricStatus::Searching);
             m_lyricFetcher->fetchLyrics(meta.artist, meta.title);
-        }
-
-        // DSP: re-apply effects to new stream
-        if (m_dspChain) {
-            m_dspChain->setStream(m_audioEngine->streamHandle());
-            m_dspChain->reapplyAll();
         }
     }
 }
@@ -477,6 +492,15 @@ void MainWindow::onPlaylistDoubleClicked(int index)
 
 void MainWindow::onOpenFiles()   { m_playlistMgr->openFiles(); }
 void MainWindow::onOpenFolder()  { m_playlistMgr->openFolder(); }
+
+void MainWindow::loadAndPlay(const QString& filePath)
+{
+    m_playlistMgr->addFiles({filePath});
+    int idx = m_playlistModel->trackCount() - 1;
+    if (idx >= 0) {
+        m_playlistMgr->playTrackAt(idx);
+    }
+}
 
 void MainWindow::onLoadM3u()
 {
