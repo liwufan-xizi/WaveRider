@@ -10,7 +10,7 @@ A customizable local audio player for Windows, built with Qt 5 and BASS audio en
 ## Features
 
 ### Audio Playback
-- Supports **MP3, FLAC, WAV, AAC, OGG** (AAC/FLAC require optional BASS add-on DLLs)
+- Supports **MP3, FLAC, WAV** (verified) — OGG, AAC may require optional BASS add-on DLLs
 - BASS 2.4 engine with gapless playback and low-latency seeking
 - Volume control with mute toggle
 
@@ -123,13 +123,16 @@ cmake --build . --config Release
 
 > **Note:** Adjust `Qt5_DIR` to your Qt installation path. For Conda users, it's typically `C:/ProgramData/anaconda3/Library/lib/cmake/Qt5`.
 
-### Optional: FLAC/AAC Support
+### Optional: Additional Format Support
 
-Download these DLLs from [un4seen.com](http://www.un4seen.com/) and place them in `vendor/bass/`:
-- `bassflac.dll` + `bassflac.lib`
-- `bass_aac.dll` + `bass_aac.lib`
+**FLAC** is confirmed working with the included `bass.dll` — no extra DLL needed.
 
-They will be automatically copied to the output directory during build.
+For formats not yet tested (OGG, AAC), download add-ons from [un4seen.com](http://www.un4seen.com/) and place them in `vendor/bass/`:
+- `bassflac.dll` (FLAC — backup, already works without it)
+- `bass_aac.dll` (AAC)
+- `bass_ogg.dll` (OGG, if needed)
+
+CMake will automatically copy any DLLs found in `vendor/bass/` to the output directory.
 
 ## Project Structure
 

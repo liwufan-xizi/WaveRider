@@ -304,14 +304,11 @@ C:\Users\liwufan\Desktop\WaveRider\build\src\Release\WaveRider.exe
 | EqualizerWidget 预设持久化 | QQ 音乐风格个性化 EQ 预设保存 |
 | 在线歌词源扩展 | 多数据源fallback，歌词时间轴微调 |
 
-## 待下载（可选功能）
-将以下文件放入 `vendor/bass/` 解锁 FLAC/AAC：
-- bassflac.dll + bassflac.lib (FLAC)
-- bass_aac.dll + bass_aac.lib (AAC)
-来源: http://www.un4seen.com/
-（bass_fx.dll 已下载并集成，DSP 效果正常工作）
+## 格式支持
+- ✅ MP3 / WAV / FLAC — 经测试确认，bass.dll 内置支持
+- ❓ AAC / OGG — 未测试，可能需额外 DLL
+- bass_fx.dll (v2.4, x64) 提供 DX8 效果 (PARAMEQ/COMPRESSOR/REVERB)
 
 ## BASS DLL 运行时
 bass.dll + bass_fx.dll 通过 CMake POST_BUILD 自动复制到 exe 同目录。
-bass_fx.dll (v2.4, x64) 提供 DX8 效果 (PARAMEQ/COMPRESSOR/REVERB)。
 Qt DLL 从 `C:\ProgramData\anaconda3\Library\bin` 加载（需在 PATH 中）。

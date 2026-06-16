@@ -10,7 +10,7 @@
 ## 功能特性
 
 ### 音频播放
-- 支持 **MP3、FLAC、WAV、AAC、OGG**（AAC/FLAC 需可选 BASS 附加 DLL）
+- 支持 **MP3、FLAC、WAV**（已验证）— OGG、AAC 可能需要额外 BASS 插件 DLL
 - BASS 2.4 引擎，无缝播放，低延迟跳转
 - 音量控制，支持静音切换
 
@@ -123,13 +123,16 @@ cmake --build . --config Release
 
 > **注意：** 请根据你的 Qt 安装路径调整 `Qt5_DIR`。Conda 用户通常为 `C:/ProgramData/anaconda3/Library/lib/cmake/Qt5`。
 
-### 可选：解锁 FLAC/AAC
+### 可选：额外格式支持
 
-从 [un4seen.com](http://www.un4seen.com/) 下载以下文件放入 `vendor/bass/`：
-- `bassflac.dll` + `bassflac.lib`（FLAC）
-- `bass_aac.dll` + `bass_aac.lib`（AAC）
+**FLAC** 已用当前 `bass.dll` 实测确认支持，无需额外 DLL。
 
-编译时会自动复制到输出目录。
+以下格式尚未测试（OGG、AAC），如需支持请从 [un4seen.com](http://www.un4seen.com/) 下载放入 `vendor/bass/`：
+- `bassflac.dll`（FLAC — 备用，目前已内置支持）
+- `bass_aac.dll`（AAC）
+- `bass_ogg.dll`（OGG）
+
+CMake 会自动将 `vendor/bass/` 中的所有 DLL 复制到输出目录。
 
 ## 项目结构
 
