@@ -1,0 +1,162 @@
+/* @vars
+$primary: #00d4aa;
+$primary_hover: #00e6b8;
+$bg_main: #0a0a14;
+$bg_panel: rgba(12,12,28,0.88);
+$bg_surface: rgba(20,20,40,0.80);
+$text_primary: #e8e8e8;
+$text_secondary: #7a7a8a;
+$text_dim: #4a4a55;
+$accent: #ff6b6b;
+$border: rgba(255,255,255,0.06);
+*/
+
+/* ── Global ──────────────────────────────────── */
+QWidget, QMainWindow {
+    background: $bg_main;
+    color: $text_primary;
+    font-family: "Segoe UI Light", "Microsoft YaHei Light", sans-serif;
+    font-size: 12px;
+}
+
+/* ── Menu Bar ────────────────────────────────── */
+QMenuBar {
+    background: transparent;
+    color: $text_secondary;
+    border-bottom: 1px solid $border;
+    padding: 1px 8px;
+    font-size: 12px;
+}
+QMenuBar::item {
+    padding: 4px 12px;
+    background: transparent;
+}
+QMenuBar::item:selected {
+    color: $primary;
+    background: transparent;
+}
+
+/* ── Menus ───────────────────────────────────── */
+QMenu {
+    background: rgba(10,10,20,0.94);
+    color: $text_primary;
+    border: 1px solid $border;
+    padding: 4px;
+    font-size: 12px;
+}
+QMenu::item {
+    padding: 5px 28px 5px 12px;
+    border-radius: 2px;
+}
+QMenu::item:selected {
+    background: $primary;
+    color: $bg_main;
+}
+QMenu::separator {
+    height: 1px;
+    background: $border;
+    margin: 4px 8px;
+}
+
+/* ── Status Bar ──────────────────────────────── */
+QStatusBar {
+    background: transparent;
+    color: $text_secondary;
+    border-top: 1px solid $border;
+    font-size: 10px;
+    padding: 1px 8px;
+    max-height: 20px;
+}
+
+/* ── Tooltips ────────────────────────────────── */
+QToolTip {
+    background: rgba(10,10,20,0.92);
+    color: $text_primary;
+    border: 1px solid $border;
+    border-radius: 3px;
+    padding: 4px 8px;
+    font-size: 11px;
+}
+
+/* ── Scrollbars ──────────────────────────────── */
+QScrollBar:vertical {
+    background: transparent;
+    width: 5px;
+    margin: 0;
+}
+QScrollBar::handle:vertical {
+    background: $text_dim;
+    border-radius: 2px;
+    min-height: 20px;
+}
+QScrollBar::handle:vertical:hover {
+    background: $primary;
+}
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
+    height: 0;
+}
+QScrollBar:horizontal {
+    background: transparent;
+    height: 5px;
+}
+QScrollBar::handle:horizontal {
+    background: $text_dim;
+    border-radius: 2px;
+    min-width: 20px;
+}
+QScrollBar::handle:horizontal:hover {
+    background: $primary;
+}
+QScrollBar::add-line:horizontal, QScrollBar::sub-line:horizontal {
+    width: 0;
+}
+
+/* ── Playlist view (QListView) ─────────────────
+   Row painting is handled by PlaylistDelegate. */
+QListView {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: $text_primary;
+    font-size: 12px;
+}
+
+/* ── Line edits (search, filter) ─────────────── */
+QLineEdit {
+    background: transparent;
+    color: $text_primary;
+    border: none;
+    border-bottom: 1px solid $border;
+    padding: 5px 2px;
+    font-size: 12px;
+}
+QLineEdit:focus {
+    border-bottom: 1px solid $primary;
+}
+
+/* ── Push buttons (general) ──────────────────── */
+QPushButton {
+    background: $bg_surface;
+    color: $text_primary;
+    border: 1px solid $border;
+    border-radius: 3px;
+    padding: 5px 14px;
+    font-size: 12px;
+}
+QPushButton:hover {
+    background: rgba(0,212,170,0.10);
+    border-color: $primary;
+}
+QPushButton:pressed {
+    background: $primary;
+    color: $bg_main;
+}
+
+/* ── Message box ─────────────────────────────── */
+QMessageBox {
+    background: $bg_main;
+    color: $text_primary;
+}
+QMessageBox QLabel {
+    color: $text_primary;
+}

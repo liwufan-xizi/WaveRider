@@ -1,0 +1,49 @@
+# Build output
+build*/
+out/
+Release/
+Debug/
+cmake/
+*.exe
+*.obj
+*.o
+*.res
+*.pch
+*.pdb
+*.ilk
+*.exp
+*.lib
+*.dll
+!vendor/bass/*.dll
+!vendor/bass/*.lib
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+*.cmake
+!CMakeLists.txt
+
+# Qt
+moc_*.cpp
+ui_*.h
+qrc_*.cpp
+*.autosave
+
+# IDE
+.vs/
+.vscode/
+*.sln
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+.idea/
+
+# OS
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+
+# App data
+AppData/

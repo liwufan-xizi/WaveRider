@@ -1,0 +1,206 @@
+/* DarkModern Theme — WaveRider
+   @vars
+   $primary: #1abc9c;
+   $primary_hover: #16a085;
+   $bg_main: #1a1a2e;
+   $bg_panel: #16213e;
+   $bg_surface: #0f3460;
+   $text_primary: #e0e0e0;
+   $text_secondary: #a0a0a0;
+   $text_dim: #666;
+   $accent: #e94560;
+   $border: #2a2a4a;
+*/
+
+/* ── Global ─────────────────────────────────── */
+QMainWindow, QWidget {
+    background-color: #1a1a2e;
+    color: #e0e0e0;
+    font-family: "Segoe UI", "Microsoft YaHei", sans-serif;
+    font-size: 13px;
+}
+
+/* ── Menu bar ───────────────────────────────── */
+QMenuBar {
+    background-color: #16213e;
+    color: #e0e0e0;
+    padding: 2px;
+    border-bottom: 1px solid #2a2a4a;
+}
+QMenuBar::item:selected {
+    background-color: #0f3460;
+}
+QMenu {
+    background-color: #16213e;
+    color: #e0e0e0;
+    border: 1px solid #2a2a4a;
+    padding: 4px;
+}
+QMenu::item:selected {
+    background-color: #1abc9c;
+    color: #fff;
+}
+
+/* ── Status bar ─────────────────────────────── */
+QStatusBar {
+    background-color: #16213e;
+    color: #a0a0a0;
+    border-top: 1px solid #2a2a4a;
+}
+
+/* ── Buttons ────────────────────────────────── */
+QPushButton {
+    background-color: #0f3460;
+    color: #e0e0e0;
+    border: 1px solid #2a2a4a;
+    border-radius: 4px;
+    padding: 6px 14px;
+    font-size: 13px;
+}
+QPushButton:hover {
+    background-color: #1a4a7a;
+}
+QPushButton:pressed {
+    background-color: #1abc9c;
+}
+
+/* ── Playback control buttons ───────────────── */
+QPushButton#PlayButton {
+    background-color: #1abc9c;
+    color: white;
+    border: none;
+    border-radius: 24px;
+    font-size: 18px;
+    min-width: 48px;
+    min-height: 48px;
+}
+QPushButton#PlayButton:hover {
+    background-color: #16a085;
+}
+QPushButton#PrevButton, QPushButton#NextButton, QPushButton#StopButton {
+    background-color: transparent;
+    border: none;
+    font-size: 18px;
+    padding: 8px;
+}
+QPushButton#PrevButton:hover, QPushButton#NextButton:hover, QPushButton#StopButton:hover {
+    color: #1abc9c;
+}
+QPushButton#ModeButton {
+    background-color: transparent;
+    border: 1px solid #2a2a4a;
+    border-radius: 4px;
+    font-size: 14px;
+}
+QPushButton#ClearButton {
+    background-color: #e94560;
+    border: none;
+    padding: 4px 12px;
+}
+QPushButton#ClearButton:hover {
+    background-color: #c0392b;
+}
+
+/* ── Sliders ────────────────────────────────── */
+QSlider::groove:horizontal {
+    height: 4px;
+    background: #2a2a4a;
+    border-radius: 2px;
+}
+QSlider::handle:horizontal {
+    background: #1abc9c;
+    width: 14px;
+    height: 14px;
+    margin: -5px 0;
+    border-radius: 7px;
+}
+QSlider::sub-page:horizontal {
+    background: #1abc9c;
+    border-radius: 2px;
+}
+
+/* ── Playlist ───────────────────────────────── */
+QListView#PlaylistView {
+    background-color: #1a1a2e;
+    border: 1px solid #2a2a4a;
+    border-radius: 4px;
+    outline: none;
+}
+QListView#PlaylistView::item {
+    padding: 6px 8px;
+    border-bottom: 1px solid #1e1e3a;
+}
+QListView#PlaylistView::item:selected {
+    background-color: #0f3460;
+    color: #1abc9c;
+}
+QListView#PlaylistView::item:alternate {
+    background-color: #181830;
+}
+
+/* ── Line edit ──────────────────────────────── */
+QLineEdit {
+    background-color: #0f3460;
+    color: #e0e0e0;
+    border: 1px solid #2a2a4a;
+    border-radius: 4px;
+    padding: 6px 10px;
+}
+QLineEdit:focus {
+    border-color: #1abc9c;
+}
+
+/* ── Tab widget ─────────────────────────────── */
+QTabWidget::pane {
+    border: 1px solid #2a2a4a;
+    background-color: #1a1a2e;
+}
+QTabBar::tab {
+    background-color: #16213e;
+    color: #a0a0a0;
+    padding: 6px 16px;
+    border: 1px solid #2a2a4a;
+    border-bottom: none;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+QTabBar::tab:selected {
+    background-color: #1a1a2e;
+    color: #1abc9c;
+}
+
+/* ── Labels ─────────────────────────────────── */
+QLabel#TrackTitle {
+    font-size: 14px;
+    font-weight: bold;
+    color: #e0e0e0;
+}
+QLabel#TrackArtist {
+    font-size: 12px;
+    color: #a0a0a0;
+}
+QLabel#TimeLabel {
+    font-size: 12px;
+    color: #a0a0a0;
+}
+QLabel#InfoTitle {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+/* ── Scrollbar ──────────────────────────────── */
+QScrollBar:vertical {
+    background: #1a1a2e;
+    width: 8px;
+}
+QScrollBar::handle:vertical {
+    background: #2a2a4a;
+    border-radius: 4px;
+    min-height: 20px;
+}
+QScrollBar::handle:vertical:hover {
+    background: #1abc9c;
+}
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
+    height: 0;
+}
